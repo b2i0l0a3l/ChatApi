@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/Uploads/778020af-77f4-47ad-a364-00923fbd5de7.jpg",
+      "PackagePath": "staticwebassets/Uploads/778020af-77f4-47ad-a364-00923fbd5de7.jpg"
+    },
+    {
+      "Id": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/Uploads/7790adc6-f5b6-4634-8c1b-9fb3fffc0e5e.jpg",
+      "PackagePath": "staticwebassets/Uploads/7790adc6-f5b6-4634-8c1b-9fb3fffc0e5e.jpg"
+    },
+    {
+      "Id": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/Uploads/79eca78b-4e53-481c-8507-8a647e55d873.jpg",
+      "PackagePath": "staticwebassets/Uploads/79eca78b-4e53-481c-8507-8a647e55d873.jpg"
+    },
+    {
+      "Id": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/Uploads/ad2e78ca-9116-49e2-b344-9ffb3fd73546.jpg",
+      "PackagePath": "staticwebassets/Uploads/ad2e78ca-9116-49e2-b344-9ffb3fd73546.jpg"
+    },
+    {
+      "Id": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/Uploads/fa68cd49-74c4-4757-91e7-e18f485bc854.jpg",
+      "PackagePath": "staticwebassets/Uploads/fa68cd49-74c4-4757-91e7-e18f485bc854.jpg"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.ChatApi.Api.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.ChatApi.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.build.ChatApi.Api.props",
+      "PackagePath": "build\\ChatApi.Api.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.ChatApi.Api.props",
+      "PackagePath": "buildMultiTargeting\\ChatApi.Api.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.ChatApi.Api.props",
+      "PackagePath": "buildTransitive\\ChatApi.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

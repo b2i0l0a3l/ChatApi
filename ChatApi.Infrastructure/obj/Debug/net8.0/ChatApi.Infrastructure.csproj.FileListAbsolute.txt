@@ -1,0 +1,5 @@
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Infrastructure/obj/Debug/net8.0/ChatApi.Infrastructure.csproj.AssemblyReference.cache
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Infrastructure/obj/Debug/net8.0/ChatApi.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Infrastructure/obj/Debug/net8.0/ChatApi.Infrastructure.AssemblyInfoInputs.cache
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Infrastructure/obj/Debug/net8.0/ChatApi.Infrastructure.AssemblyInfo.cs
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Infrastructure/obj/Debug/net8.0/ChatApi.Infrastructure.csproj.CoreCompileInputs.cache

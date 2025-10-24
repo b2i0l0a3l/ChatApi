@@ -1,0 +1,11 @@
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/bin/Debug/net8.0/ChatApi.Core.deps.json
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/bin/Debug/net8.0/ChatApi.Core.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/bin/Debug/net8.0/ChatApi.Core.pdb
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/obj/Debug/net8.0/ChatApi.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/obj/Debug/net8.0/ChatApi.Core.AssemblyInfoInputs.cache
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/obj/Debug/net8.0/ChatApi.Core.AssemblyInfo.cs
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/obj/Debug/net8.0/ChatApi.Core.csproj.CoreCompileInputs.cache
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/obj/Debug/net8.0/ChatApi.Core.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/obj/Debug/net8.0/refint/ChatApi.Core.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/obj/Debug/net8.0/ChatApi.Core.pdb
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Core/obj/Debug/net8.0/ref/ChatApi.Core.dll

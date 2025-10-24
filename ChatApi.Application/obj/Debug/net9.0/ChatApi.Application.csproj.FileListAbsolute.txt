@@ -1,0 +1,17 @@
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/bin/Debug/net9.0/ChatApi.Application.deps.json
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/bin/Debug/net9.0/ChatApi.Application.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/bin/Debug/net9.0/ChatApi.Application.pdb
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/bin/Debug/net9.0/ChatApi.Core.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/bin/Debug/net9.0/ChatApi.Infrastructure.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/bin/Debug/net9.0/ChatApi.Infrastructure.pdb
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/bin/Debug/net9.0/ChatApi.Core.pdb
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ChatApi.Application.csproj.AssemblyReference.cache
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ChatApi.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ChatApi.Application.AssemblyInfoInputs.cache
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ChatApi.Application.AssemblyInfo.cs
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ChatApi.Application.csproj.CoreCompileInputs.cache
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ChatApi..B1B2CDE8.Up2Date
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ChatApi.Application.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/refint/ChatApi.Application.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ChatApi.Application.pdb
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ref/ChatApi.Application.dll
