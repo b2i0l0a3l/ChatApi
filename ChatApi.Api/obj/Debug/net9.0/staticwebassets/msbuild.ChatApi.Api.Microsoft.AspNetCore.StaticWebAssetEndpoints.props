@@ -48,6 +48,18 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ns6q4qlqvt"},{"Name":"integrity","Value":"sha256-56D/5urOY4JxuEJUssB\u002BhUMewvuhGlWneJ8HE1uCPXk="},{"Name":"label","Value":"_content/ChatApi.Api/Uploads/ad2e78ca-9116-49e2-b344-9ffb3fd73546.jpg"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"52413"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u002256D/5urOY4JxuEJUssB\u002BhUMewvuhGlWneJ8HE1uCPXk=\u0022"},{"Name":"Last-Modified","Value":"Fri, 24 Oct 2025 13:42:56 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ChatApi.Api/Uploads/c0ab1e1e-e2a8-4302-98f7-e7d81de7332f.11u4dukpv6.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\c0ab1e1e-e2a8-4302-98f7-e7d81de7332f.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"11u4dukpv6"},{"Name":"integrity","Value":"sha256-\u002B6nnlNMY64v\u002BHYmRFtUE\u002Bic1mcnRMLoUO/Tvo282gKg="},{"Name":"label","Value":"_content/ChatApi.Api/Uploads/c0ab1e1e-e2a8-4302-98f7-e7d81de7332f.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"55217"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022\u002B6nnlNMY64v\u002BHYmRFtUE\u002Bic1mcnRMLoUO/Tvo282gKg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 26 Oct 2025 19:42:50 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ChatApi.Api/Uploads/c0ab1e1e-e2a8-4302-98f7-e7d81de7332f.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\c0ab1e1e-e2a8-4302-98f7-e7d81de7332f.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-\u002B6nnlNMY64v\u002BHYmRFtUE\u002Bic1mcnRMLoUO/Tvo282gKg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"55217"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022\u002B6nnlNMY64v\u002BHYmRFtUE\u002Bic1mcnRMLoUO/Tvo282gKg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 26 Oct 2025 19:42:50 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ChatApi.Api/Uploads/fa68cd49-74c4-4757-91e7-e18f485bc854.ab4rgttyr4.jpg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\fa68cd49-74c4-4757-91e7-e18f485bc854.jpg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

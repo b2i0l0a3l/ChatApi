@@ -15,3 +15,4 @@
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/refint/ChatApi.Application.dll
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ChatApi.Application.pdb
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ref/ChatApi.Application.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Application/obj/Debug/net9.0/ChatApi.Application.sourcelink.json

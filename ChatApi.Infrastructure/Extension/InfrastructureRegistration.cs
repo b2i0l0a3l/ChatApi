@@ -12,8 +12,11 @@ namespace ChatApi.Infrastructure.InfrastructureRegistration
     {
         public static void AddInfrastructureRegistration(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IReposatory<>),typeof(Repository<>));
-            
+            services.AddScoped(typeof(IReposatory<,>), typeof(Repository<,>));
+            services.AddScoped<IUniteOfWork, UnitOfWork>();
+            services.AddScoped<IConversation, ConversationRepo>();
+            services.AddScoped<IMessageRepo, MessageRepo>();
+            services.AddScoped<IUserConnection, UserConnectionRepo>();
         }
     }
 }

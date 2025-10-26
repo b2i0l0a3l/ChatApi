@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChatApi.Infrastructure.presistence.Repos
 {
-    public class Repository<T> : IReposatory<T> where T : class, IEntity
+    public class Repository<T,E> : IReposatory<T,E> where T : class, IEntity<E>
     {
         private readonly AppDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public Repository(AppDbContext context)
         {
@@ -20,27 +20,29 @@ namespace ChatApi.Infrastructure.presistence.Repos
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<int> AddAsync(T Entity)
+        public async Task<E> AddAsync(T Entity)
         {
             await _dbSet.AddAsync(Entity);
-            await _context.SaveChangesAsync();
             return Entity.Id;
         }
 
-        public async Task<bool> DeleteAsync(int Id)
+        public void DeleteAsync(T Entity)
         {
-            var r = await _dbSet.FindAsync(Id);
-            if (r == null)
-                return false;
-            _dbSet.Remove(r);
-            await _context.SaveChangesAsync();
-            return true;
+            _dbSet.Remove(Entity);
         }
 
-        public async Task<PagedResult<T>> GetAllAsync(int pageNumber, int pageSize)
+        public async Task<PagedResult<T>> GetAllAsync(int pageNumber, int pageSize,Expression<Func<T, bool>> predicate)
         {
+            var query = _dbSet.AsQueryable();
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
             var TotoalItems = await _dbSet.CountAsync();
-            var items = await _dbSet.Skip((pageNumber - 1) * pageSize).
+            
+            var items = await query
+            .Skip((pageNumber - 1) * pageSize).
             Take(pageSize).ToListAsync();
             return new PagedResult<T>
             {
@@ -49,10 +51,9 @@ namespace ChatApi.Infrastructure.presistence.Repos
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-        
         }
 
-        public async Task<T?> GetEntity(Expression<Func<T, bool>> predicate)
+        public async Task<T?> FindAsync(Expression<Func<T, bool>> predicate)
         => await _dbSet.FirstOrDefaultAsync(predicate);
         
 
@@ -62,7 +63,6 @@ namespace ChatApi.Infrastructure.presistence.Repos
             if (existing == null) return false;
 
             _context.Entry(existing).CurrentValues.SetValues(Entity);
-            await _context.SaveChangesAsync();
             return true;
         }
     }

@@ -72,6 +72,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\ad2e78ca-9116-49e2-b344-9ffb3fd73546.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\c0ab1e1e-e2a8-4302-98f7-e7d81de7332f.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ChatApi.Api</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ChatApi.Api</BasePath>
+      <RelativePath>Uploads/c0ab1e1e-e2a8-4302-98f7-e7d81de7332f.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>11u4dukpv6</Fingerprint>
+      <Integrity>+6nnlNMY64v+HYmRFtUE+ic1mcnRMLoUO/Tvo282gKg=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\c0ab1e1e-e2a8-4302-98f7-e7d81de7332f.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\fa68cd49-74c4-4757-91e7-e18f485bc854.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ChatApi.Api</SourceId>

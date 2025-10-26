@@ -1,6 +1,8 @@
+using ChatApi.Api.Extension;
 using ChatApi.Application.ServiceRegistration;
 using ChatApi.Infrastructure.Identity;
 using ChatApi.Infrastructure.InfrastructureRegistration;
+using ChatApi.Infrastructure.JWT;
 using ChatApi.Infrastructure.presistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +12,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
+
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddInfrastructureRegistration();
+
 builder.Services.AddApplicationRegistration();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -24,24 +30,18 @@ builder.Services.AddIdentity<ApplicationUser, Microsoft.AspNetCore.Identity.Iden
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddAuthentication(options =>
+builder.Services.AddJwtConfiguration(builder.Configuration);
+builder.Services.AddSwaggerConfig();
+
+builder.Services.AddCors(options =>
 {
-    options.DefaultAuthenticateScheme = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.SaveToken = true;
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+    options.AddDefaultPolicy(policy =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["JWT:ValidAudience"],
-        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-        ClockSkew = TimeSpan.Zero,
-        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:secret"]!))
-    };
+        policy.WithOrigins("http://127.0.0.1:5500") // ضع هنا Origin الذي تستخدمه
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
 });
 
 var app = builder.Build();
@@ -54,10 +54,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors();
 
 app.UseAuthentication(); 
 app.UseAuthorization();
 app.UseStaticFiles();
 app.MapControllers();
-
+app.MapHub<ChatApi.Infrastructure.Hubs.ChatHub>("/chatHub");
 app.Run();

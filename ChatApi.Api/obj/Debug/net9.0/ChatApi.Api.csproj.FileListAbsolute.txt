@@ -174,3 +174,6 @@
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/ChatApi.Api.genruntimeconfig.cache
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/ref/ChatApi.Api.dll
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/bin/Debug/net9.0/ChatApi.Api.staticwebassets.runtime.json
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/bin/Debug/net9.0/Newtonsoft.Json.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/bin/Debug/net9.0/System.Net.WebSockets.WebSocketProtocol.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/ChatApi.Api.sourcelink.json

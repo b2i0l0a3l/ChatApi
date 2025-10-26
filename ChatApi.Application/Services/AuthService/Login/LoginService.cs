@@ -44,10 +44,11 @@ namespace ChatApi.Application.Services.AuthService.Login
         private List<Claim> generateClaims(ApplicationUser user)
         {
             List<Claim> claims = new()
-                {
+            {
+                    new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()!),
                     new Claim(ClaimTypes.Name,(user.FirstName + " " + user.LastName)!),
                     new Claim(ClaimTypes.Email, user.Email!),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
 
                 };

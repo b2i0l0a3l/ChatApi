@@ -17,6 +17,110 @@ namespace ChatApi.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
 
+            modelBuilder.Entity("ChatApi.Core.Entities.Conversation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Conversations");
+                });
+
+            modelBuilder.Entity("ChatApi.Core.Entities.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ConversationId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("receiverId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("senderId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConversationId");
+
+                    b.HasIndex("receiverId");
+
+                    b.HasIndex("senderId");
+
+                    b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("ChatApi.Core.Entities.Participant", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset>("JoinedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset?>("LastReadAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("conversationId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("conversationId");
+
+                    b.ToTable("Participants");
+                });
+
+            modelBuilder.Entity("ChatApi.Core.Entities.UserConnection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("ConnectedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConnectionId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("userConnections");
+                });
+
             modelBuilder.Entity("ChatApi.Infrastructure.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -91,36 +195,6 @@ namespace ChatApi.Infrastructure.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("ChatApi.Infrastructure.Identity.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsRead")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("receiverId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("senderId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("receiverId");
-
-                    b.HasIndex("senderId");
-
-                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("ChatApi.Infrastructure.Identity.TokenInfo", b =>
@@ -275,19 +349,37 @@ namespace ChatApi.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ChatApi.Infrastructure.Identity.Message", b =>
+            modelBuilder.Entity("ChatApi.Core.Entities.Message", b =>
                 {
-                    b.HasOne("ChatApi.Infrastructure.Identity.ApplicationUser", "Receiver")
+                    b.HasOne("ChatApi.Core.Entities.Conversation", "Conversation")
+                        .WithMany("Messages")
+                        .HasForeignKey("ConversationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ChatApi.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
-                        .HasForeignKey("receiverId");
+                        .HasForeignKey("receiverId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("ChatApi.Infrastructure.Identity.ApplicationUser", "Sender")
+                    b.HasOne("ChatApi.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
-                        .HasForeignKey("senderId");
+                        .HasForeignKey("senderId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("Receiver");
+                    b.Navigation("Conversation");
+                });
 
-                    b.Navigation("Sender");
+            modelBuilder.Entity("ChatApi.Core.Entities.Participant", b =>
+                {
+                    b.HasOne("ChatApi.Infrastructure.Identity.ApplicationUser", null)
+                        .WithMany("Participants")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("ChatApi.Core.Entities.Conversation", "conversation")
+                        .WithMany("Participants")
+                        .HasForeignKey("conversationId");
+
+                    b.Navigation("conversation");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -339,6 +431,18 @@ namespace ChatApi.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ChatApi.Core.Entities.Conversation", b =>
+                {
+                    b.Navigation("Messages");
+
+                    b.Navigation("Participants");
+                });
+
+            modelBuilder.Entity("ChatApi.Infrastructure.Identity.ApplicationUser", b =>
+                {
+                    b.Navigation("Participants");
                 });
 #pragma warning restore 612, 618
         }

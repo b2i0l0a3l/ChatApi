@@ -15,3 +15,4 @@
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Infrastructure/obj/Debug/net9.0/ChatApi.Infrastructure.pdb
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Infrastructure/obj/Debug/net9.0/ChatApi.Infrastructure.genruntimeconfig.cache
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Infrastructure/obj/Debug/net9.0/ref/ChatApi.Infrastructure.dll
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Infrastructure/obj/Debug/net9.0/ChatApi.Infrastructure.sourcelink.json
