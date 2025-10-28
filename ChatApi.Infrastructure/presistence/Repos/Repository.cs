@@ -11,7 +11,7 @@ namespace ChatApi.Infrastructure.presistence.Repos
 {
     public class Repository<T,E> : IReposatory<T,E> where T : class, IEntity<E>
     {
-        private readonly AppDbContext _context;
+        protected readonly AppDbContext _context;
         protected readonly DbSet<T> _dbSet;
 
         public Repository(AppDbContext context)

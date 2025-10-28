@@ -17,6 +17,8 @@ namespace ChatApi.Infrastructure.presistence
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new conf.MessageCofiguration());
+            builder.ApplyConfiguration(new conf.ConversationConfig());
+
         }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }

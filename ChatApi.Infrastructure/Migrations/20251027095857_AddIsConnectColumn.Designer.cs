@@ -3,6 +3,7 @@ using System;
 using ChatApi.Infrastructure.presistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChatApi.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251027095857_AddIsConnectColumn")]
+    partial class AddIsConnectColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
@@ -22,9 +25,6 @@ namespace ChatApi.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("MessageID")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
@@ -91,7 +91,7 @@ namespace ChatApi.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("conversationId")
+                    b.Property<Guid?>("conversationId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -360,7 +360,7 @@ namespace ChatApi.Infrastructure.Migrations
                     b.HasOne("ChatApi.Core.Entities.Conversation", "Conversation")
                         .WithMany("Messages")
                         .HasForeignKey("ConversationId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("ChatApi.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
@@ -383,9 +383,7 @@ namespace ChatApi.Infrastructure.Migrations
 
                     b.HasOne("ChatApi.Core.Entities.Conversation", "conversation")
                         .WithMany("Participants")
-                        .HasForeignKey("conversationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("conversationId");
 
                     b.Navigation("conversation");
                 });

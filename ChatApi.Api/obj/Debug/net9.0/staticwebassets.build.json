@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "k6FYKlJr2f7YN3lWWCAdU5Sx0Q8yrin71Kz67iuvKas=",
+  "Hash": "PI9u5/ZlXVm0aRz+p7jDcb97vF9Yww+v9PLJ28mWFCQ=",
   "Source": "ChatApi.Api",
   "BasePath": "_content/ChatApi.Api",
   "Mode": "Default",
@@ -78,6 +78,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Uploads/79eca78b-4e53-481c-8507-8a647e55d873.jpg"
+    },
+    {
+      "Identity": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/Uploads/a7288336-7517-49e6-a29c-726978d404d2.jpg",
+      "SourceId": "ChatApi.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/",
+      "BasePath": "_content/ChatApi.Api",
+      "RelativePath": "Uploads/a7288336-7517-49e6-a29c-726978d404d2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ab4rgttyr4",
+      "Integrity": "ar0podH3ON29XI+5a1fMsJ/OKc+xnNCnGgmvQIxkAGM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/a7288336-7517-49e6-a29c-726978d404d2.jpg"
     },
     {
       "Identity": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/Uploads/ad2e78ca-9116-49e2-b344-9ffb3fd73546.jpg",
@@ -391,6 +412,88 @@
       ]
     },
     {
+      "Route": "Uploads/a7288336-7517-49e6-a29c-726978d404d2.ab4rgttyr4.jpg",
+      "AssetFile": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/Uploads/a7288336-7517-49e6-a29c-726978d404d2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13467"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ar0podH3ON29XI+5a1fMsJ/OKc+xnNCnGgmvQIxkAGM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 27 Oct 2025 11:32:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ab4rgttyr4"
+        },
+        {
+          "Name": "label",
+          "Value": "Uploads/a7288336-7517-49e6-a29c-726978d404d2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ar0podH3ON29XI+5a1fMsJ/OKc+xnNCnGgmvQIxkAGM="
+        }
+      ]
+    },
+    {
+      "Route": "Uploads/a7288336-7517-49e6-a29c-726978d404d2.jpg",
+      "AssetFile": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/Uploads/a7288336-7517-49e6-a29c-726978d404d2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13467"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ar0podH3ON29XI+5a1fMsJ/OKc+xnNCnGgmvQIxkAGM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 27 Oct 2025 11:32:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ar0podH3ON29XI+5a1fMsJ/OKc+xnNCnGgmvQIxkAGM="
+        }
+      ]
+    },
+    {
       "Route": "Uploads/ad2e78ca-9116-49e2-b344-9ffb3fd73546.jpg",
       "AssetFile": "/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/wwwroot/Uploads/ad2e78ca-9116-49e2-b344-9ffb3fd73546.jpg",
       "Selectors": [],
@@ -495,7 +598,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 26 Oct 2025 19:42:50 GMT"
+          "Value": "Sun, 26 Oct 2025 22:32:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -540,7 +643,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 26 Oct 2025 19:42:50 GMT"
+          "Value": "Sun, 26 Oct 2025 22:32:39 GMT"
         },
         {
           "Name": "Cache-Control",

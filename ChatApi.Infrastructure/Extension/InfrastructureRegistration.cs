@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ChatApi.Core.Interfaces;
 using ChatApi.Infrastructure.presistence.Repos;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ChatApi.Infrastructure.InfrastructureRegistration
@@ -16,6 +17,8 @@ namespace ChatApi.Infrastructure.InfrastructureRegistration
             services.AddScoped<IUniteOfWork, UnitOfWork>();
             services.AddScoped<IConversation, ConversationRepo>();
             services.AddScoped<IMessageRepo, MessageRepo>();
+            services.AddScoped<IParticipantRepo, ParticipantRepo>();
+            
             services.AddScoped<IUserConnection, UserConnectionRepo>();
         }
     }

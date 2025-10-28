@@ -8,7 +8,7 @@ namespace ChatApi.Core.Interfaces
 {
     public interface IConversation : IReposatory<Conversation , Guid>
     {
-            Task<IEnumerable<Conversation>> GetUserConversations(string userId);
-
+        Task<IEnumerable<Conversation>>? GetUserConversations(string userId);
+        Task<Conversation?> IsUserForConverstaionExist(string senderId, string receiverId);
     }
 }

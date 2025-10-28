@@ -11,7 +11,12 @@ namespace ChatApi.Core.Interfaces
         public IMessageRepo Message { get; }
         public IConversation Coversation { get; }
         public IUserConnection userConnection { get; }
+        public IParticipantRepo participantRepo { get; }
         Task<int> SaveChangesAsync();
+        Task BeginTransactionAsync();
+        Task CommitTransactionAsync();
+        Task RollbackTransactionAsync();
+
 
     }
 }

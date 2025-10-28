@@ -15,7 +15,7 @@ namespace ChatApi.Infrastructure.presistence.conf
         {
             builder.HasOne<ApplicationUser>().WithMany(x => x.Participants).HasForeignKey(p => p.UserId).OnDelete(DeleteBehavior.Restrict);
             
-            builder.HasOne(x=> x.conversation).WithMany(c=>c.Participants).HasForeignKey(p=>p.Id).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x=> x.conversation).WithMany(c=>c.Participants).HasForeignKey(p=>p.conversationId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
