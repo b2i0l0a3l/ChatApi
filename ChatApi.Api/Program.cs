@@ -61,4 +61,6 @@ app.UseAuthorization();
 app.UseStaticFiles();
 app.MapControllers();
 app.MapHub<ChatApi.Infrastructure.Hubs.ChatHub>("/chatHub");
+app.MapHub<ChatApi.Infrastructure.Hubs.MessageHub>("/messageHub");
+
 app.Run();

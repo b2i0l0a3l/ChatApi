@@ -19,6 +19,7 @@ namespace ChatApi.Infrastructure.presistence.Repos
         }
 
 
+
         public async Task<IEnumerable<Conversation>>? GetUserConversations(string userId)
         {
             try

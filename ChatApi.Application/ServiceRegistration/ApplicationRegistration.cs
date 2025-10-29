@@ -11,6 +11,7 @@ using ChatApi.Application.Services.AuthService.Refresh;
 using ChatApi.Application.Services.AuthService.Register;
 using ChatApi.Application.Services.TokenService;
 using ChatApi.Application.Services.UploadFileService;
+using ChatApi.Core.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ChatApi.Application.ServiceRegistration
@@ -24,7 +25,9 @@ namespace ChatApi.Application.ServiceRegistration
             services.AddScoped<ILogin, LoginService>();
             services.AddScoped<IRegister, RegisterService>();
             services.AddScoped<IRefresh, RefreshService>();
-            services.AddScoped<IAuth,AuthService>();
+            services.AddScoped<IAuth, AuthService>();
+            services.AddScoped<IConversationService,ConversationService>();
+            
         }
 
     }

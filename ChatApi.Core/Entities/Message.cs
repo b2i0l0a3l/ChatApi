@@ -11,8 +11,6 @@ namespace ChatApi.Core.Entities
         public int Id { get; set; }
         
         public string? senderId { get; set; }
-        
-        
 
 
         public Guid? ConversationId { get; set; } 

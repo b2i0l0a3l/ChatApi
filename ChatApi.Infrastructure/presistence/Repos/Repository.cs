@@ -31,7 +31,7 @@ namespace ChatApi.Infrastructure.presistence.Repos
             _dbSet.Remove(Entity);
         }
 
-        public async Task<PagedResult<T>> GetAllAsync(int pageNumber, int pageSize,Expression<Func<T, bool>> predicate)
+        public async Task<PagedResult<T>> GetAllAsync(int pageNumber, int pageSize,Expression<Func<T, bool>> predicate = null)
         {
             var query = _dbSet.AsQueryable();
             if (predicate != null)

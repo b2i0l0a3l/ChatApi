@@ -8,8 +8,11 @@ namespace ChatApi.Core.Interfaces
 {
     public interface IMessageRepo : IReposatory<Message , int>
     {
+        Task<List<Message>> GetUnreadMessagesForConversation(Guid conversationId, string userId);
         Task<IEnumerable<Message>> GetMessagesForConversation(Guid conversationId, int page, int pageSize);
-        Task<int> GetUnreadCount(Guid conversationId,string userId);
+        Task<int> GetUnreadCount(Guid conversationId, string userId);
+        Task<int> GetTotalUnreadMessages(Guid UserID);
+        Task MarkMessagesAsRead(Guid conversationId, string userId);
 
     }
 }
