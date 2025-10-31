@@ -16,28 +16,13 @@ namespace ChatApi.Infrastructure.presistence.Repos
         => _logger = logger;
             
             public async Task<List<Message>> GetUnreadMessagesForConversation(Guid conversationId, string userId)
-{
-    return await _dbSet
-        .Where(m => m.ConversationId == conversationId && m.receiverId == userId && !m.IsRead)
-        .ToListAsync();
-}
-
-        public async Task<int> GetUnreadCount(Guid conversationId, string userId)
         {
-            try
-            {
-                var r = await _dbSet.CountAsync(m => m.ConversationId == conversationId && m.senderId != userId && !m.IsRead);
-                _logger.LogInformation("Retrieved unread message count");
-                return r;
-                
-            }catch(Exception ex)
-            {
-                _logger.LogError(ex, "Error getting unread message count");
-                return -1;
-            }
-            
+            return await _dbSet
+                .Where(m => m.ConversationId == conversationId && m.receiverId == userId && !m.IsRead)
+                .ToListAsync();
         }
 
+                
         public async Task<IEnumerable<Message>> GetMessagesForConversation(Guid conversationId, int page, int pageSize)
         {
             try

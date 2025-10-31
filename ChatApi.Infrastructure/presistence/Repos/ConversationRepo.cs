@@ -17,40 +17,43 @@ namespace ChatApi.Infrastructure.presistence.Repos
         {
             _logger = logger;
         }
-
-
-
-        public async Task<IEnumerable<Conversation>>? GetUserConversations(string userId)
+       
+        public async Task<Conversation?> GetConversation(string senderId, string receiverId)
+        =>            await  _dbSet
+            .Include(p => p.Participants)
+            .Where(c =>
+            c.Participants!.Any(p => p.UserId == senderId) &&  
+            c.Participants!.Any(p => p.UserId == receiverId)   
+            )
+            .FirstOrDefaultAsync()??null; 
+        
+        public async Task<IEnumerable<Guid>?> GetConversationID(string UserId)
+            => await _dbSet
+            .Where(c => c.Participants!.Any(p => p.UserId == UserId))
+            .Select(c => c.Id)   
+            .ToListAsync()??null;
+        public async Task<IEnumerable<Conversation>?> GetUserConversations(string userId)
         {
             try
             {
-                var r = await _context.Participants.Where(x => x.UserId == userId).Include(p => p.conversation)
-                .Select(p => p.conversation).ToListAsync();
+                var r = await _dbSet
+            .Include(c => c.Participants)
+            
+            .Where(c => c.Participants.Any(p => p.UserId == userId))
+            
+            .ToListAsync();
+                if (r == null) return null;
+
                 return r;
-                
+
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "Error While Getting Conversation : {ex.Message}", ex.Message);
-                return Enumerable.Empty<Conversation>();
-                
-            }
-        }
-        public async Task<Conversation?> IsUserForConverstaionExist(string senderId, string receiverId)
-        {
-            try
-            {
-                var r = await _dbSet.AsQueryable().Include(p => p.Participants).FirstOrDefaultAsync(
-                    c => c.Participants.Any(p => p.UserId == senderId) &&
-                            c.Participants.Any(p => p.UserId == receiverId)
-                );
-                return r;
-                
-            }catch(Exception ex)
-            {
-                _logger.LogInformation(ex, "error : {ex.Message}", ex.Message);
                 return null;
+                
             }
         }
+        
     }
 }

@@ -1,5 +1,7 @@
 using ChatApi.Api.Extension;
+using ChatApi.Application.handler;
 using ChatApi.Application.ServiceRegistration;
+using ChatApi.Infrastructure.Hubs;
 using ChatApi.Infrastructure.Identity;
 using ChatApi.Infrastructure.InfrastructureRegistration;
 using ChatApi.Infrastructure.JWT;
@@ -61,6 +63,6 @@ app.UseAuthorization();
 app.UseStaticFiles();
 app.MapControllers();
 app.MapHub<ChatApi.Infrastructure.Hubs.ChatHub>("/chatHub");
-app.MapHub<ChatApi.Infrastructure.Hubs.MessageHub>("/messageHub");
+    
 
 app.Run();

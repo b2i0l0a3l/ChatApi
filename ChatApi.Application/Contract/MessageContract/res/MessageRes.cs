@@ -29,7 +29,7 @@ namespace ChatApi.Application.Contract.MessageContract.res
             this.IsRead = message.IsRead;
             this.receiverId = message.receiverId;
             this.senderId = message.senderId;
-
+            
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ChatApi.Core.Entities
 {
     public class Conversation : IEntity<Guid>
     {
-        public Guid Id { get; set; }  = Guid.NewGuid();
+        public Guid Id { get; set; }  
         public string? Title { get; set; }
         public ICollection<Message>? Messages { get; set; }
 

@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using ChatApi.Core.Common;
 using ChatApi.Core.Entities;
+using ChatApi.Core.events;
 using ChatApi.Core.Interfaces;
 using ChatApi.Infrastructure.Identity;
 using ChatApi.Infrastructure.presistence;
@@ -19,9 +20,9 @@ using Microsoft.Extensions.Logging;
 namespace ChatApi.Infrastructure.Hubs
 {
     [Authorize]
-    public class ChatHub(IUniteOfWork _UOW,ILogger<ChatHub> _logger) : Hub
+    public class ChatHub(IUniteOfWork _UOW, ILogger<ChatHub> _logger) : Hub
     {
-        
+
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
             var userId = Context.UserIdentifier;
@@ -44,11 +45,17 @@ namespace ChatApi.Infrastructure.Hubs
         }
         public async Task SendMessage(Guid receiverId, string message)
         {
-                Guid senderId = Guid.Parse(Context.UserIdentifier!);
-                var conversation = await _UOW.Coversation
-                    .IsUserForConverstaionExist(senderId.ToString(), receiverId.ToString());
+            if (string.IsNullOrEmpty(receiverId.ToString()))
+            {
+                _logger.LogError("Receiver Id is null");
+                return;
+            }
+            Guid senderId = Guid.Parse(Context.UserIdentifier!);
+            
+            var conversation = await _UOW.Coversation
+                .GetConversation(senderId.ToString(), receiverId.ToString());
 
-                UserConnection? recieverConnection = await _UOW.userConnection.FindAsync(x => x.UserId == receiverId);
+            UserConnection? recieverConnection = await _UOW.userConnection.FindAsync(x => x.UserId == receiverId);
             await _UOW.BeginTransactionAsync();
             try
             {
@@ -63,8 +70,12 @@ namespace ChatApi.Infrastructure.Hubs
                     new Participant { UserId = receiverId.ToString() }
                 }
                     };
-                    await _UOW.Coversation.AddAsync(conversation);
+                    conversation.Id = await _UOW.Coversation.AddAsync(conversation);
+                    _logger.LogInformation($"Conversation Created successfully With ID {conversation.Id}");
+                    await _UOW.SaveChangesAsync();
+
                 }
+                    _logger.LogInformation($"Conversation geted successfully With ID {conversation.Id} , {conversation.Title}");
 
                 var messageEntity = new Message
                 {
@@ -82,12 +93,12 @@ namespace ChatApi.Infrastructure.Hubs
                 await Groups.AddToGroupAsync(Context.ConnectionId, conversation.Id.ToString());
 
                 if (recieverConnection != null)
-                     await Groups.AddToGroupAsync(recieverConnection.ConnectionId, conversation.Id.ToString());
+                    await Groups.AddToGroupAsync(recieverConnection.ConnectionId, conversation.Id.ToString());
 
-                    await Clients.Group(conversation.Id.ToString())
-                    .SendAsync("ReceiveMessage", senderId, message);
+                await Clients.Group(conversation.Id.ToString())
+                .SendAsync("ReceiveMessage", senderId, message);
 
-                    await NotifyUnreadCount(receiverId);
+                await NotifyUnreadCount(receiverId);
 
 
                 _logger.LogInformation($"💬 Message sent from {senderId} to {receiverId}");
@@ -99,26 +110,27 @@ namespace ChatApi.Infrastructure.Hubs
             }
 
         }
-          public async Task MarkMessagesAsRead(Guid conversationId)
-    {
-            var userId = Context.UserIdentifier!;
-                var isParticipant = await _UOW.participantRepo.IsParticipantInConversation(conversationId,userId);
-        if (!isParticipant)
+        
+        public async Task MarkMessagesAsRead(Guid conversationId)
         {
-            _logger.LogWarning($"Unauthorized attempt by {userId} to mark messages as read in {conversationId}");
-            return;
-        }
-
-        await _UOW.Message.MarkMessagesAsRead(conversationId, userId);
-        await _UOW.SaveChangesAsync();
-
-            await NotifyUnreadCount(Guid.Parse(userId));
+            var userId = Context.UserIdentifier!;
+            var isParticipant = await _UOW.participantRepo.IsParticipantInConversation(conversationId, userId);
+            if (!isParticipant)
+            {
+                _logger.LogWarning($"Unauthorized attempt by {userId} to mark messages as read in {conversationId}");
+                return;
+            }
             await Clients.Group(conversationId.ToString())
     .SendAsync("MessagesMarkedAsRead", conversationId, userId);
 
-    }
+            await _UOW.Message.MarkMessagesAsRead(conversationId, userId);
+            await _UOW.SaveChangesAsync();
+
+            await NotifyUnreadCount(Guid.Parse(userId));
+
+        }
         private async Task NotifyUnreadCount(Guid userId)
-                {
+        {
             var connection = await _UOW.userConnection.FindAsync(x => x.UserId == userId);
             if (connection == null) return;
             var count = await _UOW.Message.GetTotalUnreadMessages(userId);
@@ -162,12 +174,16 @@ namespace ChatApi.Infrastructure.Hubs
             {
                 _logger.LogError(ex.Message, "Error in OnConnectedAsync");
             }
-                await base.OnConnectedAsync();
+            await base.OnConnectedAsync();
 
         }
         private async Task JoinUserConversationsAsync(Guid UserId, string ConnectionId)
         {
-            var r =await _UOW.participantRepo.GetConversation(UserId.ToString());
+            var r = await _UOW.Coversation.GetConversationID(UserId.ToString());
+            if (r == null){
+                _logger.LogInformation($"Error Happed While getting Conversation ID");
+             return;
+                }
             foreach (var c in r)
             {
                 await Groups.AddToGroupAsync(ConnectionId, c.ToString());
