@@ -38,7 +38,6 @@ It is structured using **Clean Architecture**, which separates the project into 
 - ✅ RESTful API endpoints (create chat, send messages, retrieve history)  
 - ✅ Entity Framework Core for database operations  
 - ✅ Dependency Injection and modular design  
-- ✅ Unit tests and integration tests support  
 - ✅ Extensible and maintainable  
 
 ---
