@@ -18,7 +18,7 @@ namespace ChatApi.Infrastructure.InfrastructureRegistration
             services.AddScoped<IConversation, ConversationRepo>();
             services.AddScoped<IMessageRepo, MessageRepo>();
             services.AddScoped<IParticipantRepo, ParticipantRepo>();
-            
+            services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IUserConnection, UserConnectionRepo>();
         }
     }

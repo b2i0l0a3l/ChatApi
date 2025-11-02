@@ -16,15 +16,16 @@ namespace ChatApi.Infrastructure.presistence.Repos
         public IConversation Coversation { get; }
         public IUserConnection userConnection { get; }
         public IParticipantRepo participantRepo { get; }
-
+        public IUserRepo user{ get; }
         public UnitOfWork(AppDbContext context, IMessageRepo messageRepo, IConversation conversationRepo,
-         IUserConnection userConnectionRepo, IParticipantRepo participant)
+         IUserConnection userConnectionRepo, IParticipantRepo participant, IUserRepo user)
         {
             _context = context;
             Message = messageRepo;
             Coversation = conversationRepo;
             userConnection = userConnectionRepo;
             participantRepo = participant;
+            this.user = user;
 
         }
         public async Task BeginTransactionAsync()

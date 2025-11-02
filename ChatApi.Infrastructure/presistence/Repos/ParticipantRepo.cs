@@ -16,16 +16,19 @@ namespace ChatApi.Infrastructure.presistence.Repos
         private readonly UserManager<ApplicationUser> _user;
         public ParticipantRepo(AppDbContext context, UserManager<ApplicationUser> user) : base(context) { _user = user; }
 
+
         public async Task<bool> IsParticipantInConversation(Guid conversationId, string userId)
         {
             return await _context.Participants
                 .AnyAsync(p => p.conversationId == conversationId && p.UserId == userId);
         }
+
         private async Task<ParticipantInfo?> GetFullName(string UserId)
         {
             var user = await _user.FindByIdAsync(UserId.ToString());
-            return new ParticipantInfo{Id = Guid.Parse(UserId) , FullName = user?.FullName ?? "Unbekannt"};
+            return new ParticipantInfo { Id = Guid.Parse(UserId), FullName = user?.FullName ?? "Unbekannt" };
         }
+        
             public async Task<List<ParticipantInfo>?> GetParticipant(Guid conversationId)
         {
             var users = await _dbSet

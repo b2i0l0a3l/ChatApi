@@ -13,19 +13,23 @@
     namespace ChatApi.Application.Services
     {
         public class MessageService(IUniteOfWork _unite ) : IMessageService
+    {
+        private async Task<string?> GetUserName(string UserID)
+      => await _unite.user.GetFullName(UserID);
+
+        public async Task<GeneralResponse<IEnumerable<MessageRes>>> GetAllMessages(MessageReq model)
         {
-            public async Task<GeneralResponse<IEnumerable<MessageRes>>> GetAllMessages(MessageReq model)
-            {
 
             if (model == null)
                 return GeneralResponse<IEnumerable<MessageRes>>.Failure("Invalid Data", StatusCodes.Status400BadRequest);
-                    
-                var r = await _unite.Message.GetMessagesForConversation(model.ConversationId, model.PageNumber, model.PageSize);
 
-                if (r == null) return GeneralResponse<IEnumerable<MessageRes>>.Failure("Messages Not Found", StatusCodes.Status500InternalServerError);
+            var r = await _unite.Message.GetMessagesForConversation(model.ConversationId, model.PageNumber, model.PageSize);
 
-                
-                return GeneralResponse<IEnumerable<MessageRes>>.Success(r.Select(x => new MessageRes(x)), "Messages found", 200);
+            if (r == null) return GeneralResponse<IEnumerable<MessageRes>>.Failure("Messages Not Found", StatusCodes.Status500InternalServerError);
+
+            string? senderFullName = await GetUserName(r.Select(x => x.senderId).FirstOrDefault()!);
+            string? recieverFullName = await GetUserName(r.Select(x => x.receiverId).FirstOrDefault()!);
+            return GeneralResponse<IEnumerable<MessageRes>>.Success(r.Select(x=> new MessageRes(x,senderFullName!,recieverFullName!)), "Messages found", 200);
             }
         }
     }
