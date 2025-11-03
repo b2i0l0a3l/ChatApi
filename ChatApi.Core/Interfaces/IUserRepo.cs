@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChatApi.Core.DTO;
 
 namespace ChatApi.Core.Interfaces
 {
-    public interface IUserRepo 
+    public interface IUserRepo
     {
-        Task<string?> GetFullName(string UserID);
+        Task<UserDto?> GetUser(string UserID);
     }
 }

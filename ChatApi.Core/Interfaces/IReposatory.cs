@@ -9,6 +9,7 @@ namespace ChatApi.Core.Interfaces
 {
     public interface IReposatory<T,E> where T : class , IEntity<E>
     {
+        Task SaveAsync();
         Task<PagedResult<T>> GetAllAsync(int pageNumber, int pageSize,Expression<Func<T, bool>> predicate = null);
         Task<T?> FindAsync(Expression<Func<T, bool>> predicate);
         Task<E> AddAsync(T Entity);

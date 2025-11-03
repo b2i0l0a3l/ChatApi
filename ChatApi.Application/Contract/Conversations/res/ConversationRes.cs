@@ -13,7 +13,6 @@ namespace ChatApi.Application.Contract.Conversations.res
     {
         public string? Id { get; set; }
         public string? Title { get; set; }
-        public List<ParticipantInfo>? Participant { get; set; }
     }
 
 }

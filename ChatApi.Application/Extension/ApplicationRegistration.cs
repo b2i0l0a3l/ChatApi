@@ -29,6 +29,8 @@ namespace ChatApi.Application.ServiceRegistration
             services.AddScoped<IAuth, AuthService>();
             services.AddScoped<IConversationService,ConversationService>();
             services.AddScoped<IMessageService, MessageService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IParticipantService, ParticipantService>();
             services.AddScoped<ChatEventHandler>();
         }
 

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ChatApi.Api.Controllers
 {
     [ApiController]
-    [Route("api/Chat")]
+    [Route("api/Message")]
     [Authorize]
         public class ChatController(IMessageService _service) : ControllerBase
         {
@@ -23,11 +23,8 @@ namespace ChatApi.Api.Controllers
                 Ok(
                     await _service.GetAllMessages(model)
                 );
-
-            // [HttpGet()]
-            // [ProducesResponseType(StatusCodes.Status200OK)]
-            // public async Task<IActionResult> UnreadMessages(Guid conversationId, string UserId)
-            // => Ok(await _UOW.Message.GetUnreadCount(conversationId, UserId));
+            
+           
         }
 
 }

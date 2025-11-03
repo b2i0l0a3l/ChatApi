@@ -17,7 +17,7 @@ namespace ChatApi.Infrastructure.presistence.Repos
         {
             _logger = logger;
         }
-       
+        
         public async Task<Conversation?> GetConversation(string senderId, string receiverId)
         =>            await  _dbSet
             .Include(p => p.Participants)

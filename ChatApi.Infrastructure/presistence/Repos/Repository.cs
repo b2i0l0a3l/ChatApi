@@ -55,7 +55,7 @@ namespace ChatApi.Infrastructure.presistence.Repos
 
         public async Task<T?> FindAsync(Expression<Func<T, bool>> predicate)
         => await _dbSet.FirstOrDefaultAsync(predicate);
-        
+
 
         public async Task<bool> UpdateAsync(T Entity)
         {
@@ -64,6 +64,10 @@ namespace ChatApi.Infrastructure.presistence.Repos
 
             _context.Entry(existing).CurrentValues.SetValues(Entity);
             return true;
+        }
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

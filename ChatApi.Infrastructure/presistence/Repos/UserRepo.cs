@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChatApi.Core.DTO;
 using ChatApi.Core.Interfaces;
 using ChatApi.Infrastructure.Identity;
 using Microsoft.Build.Framework;
@@ -15,9 +16,10 @@ namespace ChatApi.Infrastructure.presistence.Repos
         private ILogger<UserRepo> _logger;
         public UserRepo(AppDbContext context, ILogger<UserRepo> logger) : base(context) { _logger = logger; }
 
-        
-        public async Task<string?> GetFullName(string UserID)
+
+        public async Task<UserDto?> GetUser(string UserID)
         {
+            
             if (string.IsNullOrEmpty(UserID))
             {
                 _logger.LogError("User Id Invalid!");
@@ -32,9 +34,8 @@ namespace ChatApi.Infrastructure.presistence.Repos
                     _logger.LogWarning("User not Found");
                     return null;
                 }
-                return User.FullName;
-            }
-            catch (System.Exception ex)
+                return new UserDto{Id = User.Id, AvatarPath = User.ProfileImage,Email = User.Email, FullName = User.FullName};
+            }catch (System.Exception ex)
             {
                 _logger.LogError("Error Happend! {ex.Message}",ex.Message);
 
