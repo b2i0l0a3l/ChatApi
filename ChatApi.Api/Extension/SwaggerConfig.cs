@@ -10,16 +10,27 @@ namespace ChatApi.Api.Extension
     {
         public static void AddSwaggerConfig(this IServiceCollection services)
         {
-              services.AddSwaggerGen(c =>
+                services.AddSwaggerGen(c =>
             {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "ChatApi - Professional Chat API",
+                    Version = "v1",
+                    Description = "A modern, scalable real-time chat API built with Clean Architecture",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "API Support",
+                        Email = "support@chatapi.com"
+                    }
+                });
+
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
                     Name = "Authorization",
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "أدخل JWT Token مسبوق بـ 'Bearer '"
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -33,11 +44,17 @@ namespace ChatApi.Api.Extension
                                 Id = "Bearer"
                             }
                         },
-                        new string[] {}
+                        Array.Empty<string>()
                     }
                 });
-            });
 
+                var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                if (File.Exists(xmlPath))
+                {
+                    c.IncludeXmlComments(xmlPath);
+                }
+            });
         }
     }
 }

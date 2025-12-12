@@ -12,6 +12,11 @@ namespace ChatApi.Application.Contract.Common
         public T? Data { get; set; }
         public int StatusCode { get; set; }
 
+        // Parameterless constructor for JSON serialization
+        public GeneralResponse()
+        {
+        }
+
         public GeneralResponse(bool isSuccess, string message, T? data, int statusCode)
         {
             IsSuccess = isSuccess;

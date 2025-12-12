@@ -29,7 +29,7 @@ namespace ChatApi.Infrastructure.JWT
                         ValidIssuer = configuration["JWT:ValidIssuer"],
                         ClockSkew = TimeSpan.Zero,
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["JWT:secret"]!))
+                        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["JWT:Secret"]!))
                     };
                      options.Events = new JwtBearerEvents
         {

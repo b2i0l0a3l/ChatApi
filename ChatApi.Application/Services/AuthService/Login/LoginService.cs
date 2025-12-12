@@ -9,7 +9,7 @@ using ChatApi.Application.Contract.Common;
 using ChatApi.Application.Interfaces;
 using ChatApi.Application.Interfaces.Auth;
 using ChatApi.Infrastructure.Identity;
-using ChatApi.Infrastructure.presistence;
+using ChatApi.Infrastructure.JWT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
@@ -17,11 +17,10 @@ namespace ChatApi.Application.Services.AuthService.Login
 {
     public class LoginService : ILogin
     {
-        private readonly UserManager<Infrastructure.Identity.ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IToken _tokenService; 
 
-        public LoginService(UserManager<Infrastructure.Identity.ApplicationUser> userManager, IToken tokenService,
-        AppDbContext context)
+        public LoginService(UserManager<ApplicationUser> userManager, IToken tokenService)
         {
             _userManager = userManager;
             _tokenService = tokenService;
@@ -36,32 +35,16 @@ namespace ChatApi.Application.Services.AuthService.Login
                 return false;
 
             return true;
-        }
-        private async Task<(bool,string)> AddTokenToDB(Infrastructure.Identity.ApplicationUser user, string refreshToken)
-        {
-            return await _tokenService.AddTokenToDB(user, refreshToken);
-        }
-        private List<Claim> generateClaims(ApplicationUser user)
-        {
-            List<Claim> claims = new()
-            {
-                    new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()!),
-                    new Claim(ClaimTypes.Name,(user.FirstName + " " + user.LastName)!),
-                    new Claim(ClaimTypes.Email, user.Email!),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-
-                };
-            return claims;
-        }
-        private async Task<(string, string)> GenerateJwtToken(Infrastructure.Identity.ApplicationUser user)
+        }  
+        private async Task<(string, string)> GenerateJwtToken(ApplicationUser user)
         {
 
-            var token = _tokenService.GenerateAccessToken(generateClaims(user));
+            var token = _tokenService.GenerateAccessToken(UserClaims.GenerateDefaultClaims(user));
 
             string refreshToken = _tokenService.GenerateRefreshToken();
 
-            (bool , string) r = await AddTokenToDB(user, refreshToken);
+            await _tokenService.AddTokenToDB(user, refreshToken);
+
             return (token, refreshToken);
         }
 
@@ -85,9 +68,8 @@ namespace ChatApi.Application.Services.AuthService.Login
                     RefreshToken = refreshToken
                 };
                 return GeneralResponse<AuthRes>.Success(authRes, "Login successful", StatusCodes.Status200OK);
-
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
 
                 return GeneralResponse<AuthRes>.Failure(ex.Message, StatusCodes.Status500InternalServerError);

@@ -9,6 +9,7 @@ namespace ChatApi.Application.Interfaces
 {
     public interface IUserService
     {
-        Task<GeneralResponse<UserRes>> GetProfileInfo(string UserID); 
+        Task<GeneralResponse<UserRes>> GetProfileInfo(); 
+        Task<GeneralResponse<UserRes>> GetProfileInfoById(string UserID); 
     }
 }

@@ -12,7 +12,7 @@ namespace ChatApi.Application.Interfaces
 {
     public interface IConversationService
     {
-        Task<GeneralResponse<IEnumerable<ConversationRes>?>> GetAllConversations(string UserID);
+        Task<GeneralResponse<IEnumerable<ConversationRes>?>> GetAllConversations();
         Task<GeneralResponse<bool>> ChangeConversationName(ConversationReq conv);
     }
 }

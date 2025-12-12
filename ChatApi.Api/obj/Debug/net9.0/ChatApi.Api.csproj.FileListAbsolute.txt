@@ -161,12 +161,6 @@
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/staticwebassets.build.json
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/staticwebassets.development.json
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/staticwebassets.build.endpoints.json
-/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/staticwebassets/msbuild.ChatApi.Api.Microsoft.AspNetCore.StaticWebAssets.props
-/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/staticwebassets/msbuild.ChatApi.Api.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/staticwebassets/msbuild.build.ChatApi.Api.props
-/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.ChatApi.Api.props
-/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.ChatApi.Api.props
-/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/staticwebassets.pack.json
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/ChatApi..05B1133E.Up2Date
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/ChatApi.Api.dll
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/refint/ChatApi.Api.dll
@@ -177,3 +171,9 @@
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/bin/Debug/net9.0/Newtonsoft.Json.dll
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/bin/Debug/net9.0/System.Net.WebSockets.WebSocketProtocol.dll
 /home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/ChatApi.Api.sourcelink.json
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/rpswa.dswa.cache.json
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/rjimswa.dswa.cache.json
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/rjsmrazor.dswa.cache.json
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/staticwebassets.build.json.cache
+/home/fatma/سطح المكتب/مجلّد جديد/ChatApi.Api/obj/Debug/net9.0/swae.build.ex.cache

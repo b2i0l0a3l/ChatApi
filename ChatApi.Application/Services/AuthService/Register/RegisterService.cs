@@ -14,9 +14,9 @@ namespace ChatApi.Application.Services.AuthService.Register
 {
     public class RegisterService : IRegister
     {
-        private readonly UserManager<Infrastructure.Identity.ApplicationUser> _userManager; 
+        private readonly UserManager<ApplicationUser> _userManager; 
         private readonly IUploadFile _uploadFileService;
-        public RegisterService(UserManager<Infrastructure.Identity.ApplicationUser> userManager, IUploadFile uploadFileService, IHttpContextAccessor httpContextAccessor)
+        public RegisterService(UserManager<ApplicationUser> userManager, IUploadFile uploadFileService, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _uploadFileService = uploadFileService;
@@ -31,17 +31,18 @@ namespace ChatApi.Application.Services.AuthService.Register
              => await _uploadFileService.UploadFile(file);
         public async Task<GeneralResponse<string>> Register(SingUp model)
         {
-            string uploadedImagePath = string.Empty;
             if (model == null)
                 return GeneralResponse<string>.Failure("Invalid user data", StatusCodes.Status400BadRequest);
 
+            string uploadedImagePath = string.Empty;
             try
             {
                 if (await CheckUserIfExists(model.Email))
                     return GeneralResponse<string>.Failure("User already exists", StatusCodes.Status409Conflict);
 
                 (string, string) i = await UploadProfileImage(model.ProfileImage);
-                uploadedImagePath = i.Item2;
+                uploadedImagePath = i.Item2??"";
+
                 ApplicationUser user = new()
                 {
                     UserName = model.Email,
@@ -52,18 +53,21 @@ namespace ChatApi.Application.Services.AuthService.Register
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
-                
+
                 if (!result.Succeeded)
                 {
-                    return GeneralResponse<string>.Failure($"{string.Join(", " ,result.Errors.Select(e => e.Description))}", StatusCodes.Status500InternalServerError);
+                    return GeneralResponse<string>.Failure($"{string.Join(", ", result.Errors.Select(e => e.Description))}", StatusCodes.Status500InternalServerError);
                 }
-                return GeneralResponse<string>.Success("", "User registered successfully", StatusCodes.Status201Created);
+                
+                return GeneralResponse<string>.Success("", "User registered successfully", 201);
             }
             catch (Exception ex)
             {
+
                 if ( uploadedImagePath!= null && File.Exists(uploadedImagePath))
                     File.Delete(uploadedImagePath);
-                return GeneralResponse<string>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+                return GeneralResponse<string>.Failure(ex.Message, 500);
+
             }
 
         }

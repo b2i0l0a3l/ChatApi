@@ -32,13 +32,13 @@ namespace ChatApi.Infrastructure.presistence.Repos
                 return null;
             }
         }
-        public async Task<IEnumerable<Message>?> GetMessagesForConversation(Guid conversationId, int page, int pageSize)
+        public async Task<IEnumerable<Message>?> GetMessagesForConversation(Guid conversationId,string UserId ,int page, int pageSize)
         {
             try
             {
 
                 var r = await _dbSet
-                    .Where(m => m.ConversationId == conversationId)
+                    .Where(m => m.ConversationId == conversationId && (m.senderId  == UserId || m.receiverId  == UserId ))
                     .OrderByDescending(m => m.CreateAt)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize)
@@ -50,7 +50,7 @@ namespace ChatApi.Infrastructure.presistence.Repos
             }catch(Exception ex)
             {
                 _logger.LogError(ex, "Error retrieving messages for conversation");
-                return Enumerable.Empty<Message>();
+                return null;
             }
         }
         public async Task<int?> GetTotalUnreadMessages(Guid UserID)
@@ -89,7 +89,39 @@ namespace ChatApi.Infrastructure.presistence.Repos
                 
             }catch(Exception ex)
             {
-                _logger.LogError("Error while trying to Mark messages as read: {ex.Message}", ex.Message);
+            _logger.LogError("Error while trying to Mark messages as read: {ex.Message}", ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<Message>?> SearchMessages(string query, Guid? conversationId, string userId)
+        {
+            try
+            {
+                var queryable = _dbSet
+                    .Where(m => m.senderId == userId || m.receiverId == userId);
+
+                if (conversationId.HasValue)
+                {
+                    queryable = queryable.Where(m => m.ConversationId == conversationId.Value);
+                }
+
+                if (!string.IsNullOrWhiteSpace(query))
+                {
+                    queryable = queryable.Where(m => m.Content.Contains(query));
+                }
+
+                var results = await queryable
+                    .OrderByDescending(m => m.CreateAt)
+                    .Take(50)
+                    .ToListAsync();
+
+                _logger.LogInformation("Search completed, found {Count} messages", results.Count);
+                return results;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error searching messages: {Message}", ex.Message);
+                return null;
             }
         }
     }

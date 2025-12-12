@@ -1,21 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using ChatApi.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChatApi.Api.Controllers
 {
+
     [ApiController]
-    [Route("api/Participant")]
-    public class ParticipantController(IParticipantService participant) : ControllerBase
+    [Route("api/v1/Participant")]
+    [Authorize]
+    public class ParticipantController : ControllerBase
     {
-        [HttpGet("GetParticipantInConversation")]
+        private readonly IParticipantService _participant;
+
+        public ParticipantController(IParticipantService participant)
+        {
+            _participant = participant;
+        }
+
+
+        [HttpGet("conversation/{conversationId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetParticipantInConversation(string conversationId)
-        => Ok(await participant.GetParticipantByConversationID(conversationId));
+        => Ok(await _participant.GetParticipantByConversationID(conversationId));
+          
+        
     }
 }

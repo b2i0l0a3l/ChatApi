@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ChatApi.Application.handler;
 using ChatApi.Application.Interfaces;
 using ChatApi.Application.Interfaces.Auth;
 using ChatApi.Application.Services;
@@ -31,7 +30,6 @@ namespace ChatApi.Application.ServiceRegistration
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IParticipantService, ParticipantService>();
-            services.AddScoped<ChatEventHandler>();
         }
 
     }

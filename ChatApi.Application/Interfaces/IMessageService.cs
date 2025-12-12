@@ -11,5 +11,7 @@ namespace ChatApi.Application.Interfaces
     public interface IMessageService
     {
         Task<GeneralResponse<IEnumerable<MessageRes>>> GetAllMessages(MessageReq model);
+        Task<GeneralResponse<int>> GetUnreadCount();
+        Task<GeneralResponse<IEnumerable<MessageRes>>> SearchMessages(string query, Guid? conversationId);
     }
 }

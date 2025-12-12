@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ChatApi.Core.Interfaces;
+using ChatApi.Infrastructure.JWT;
 using ChatApi.Infrastructure.presistence.Repos;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@ namespace ChatApi.Infrastructure.InfrastructureRegistration
             services.AddScoped<IMessageRepo, MessageRepo>();
             services.AddScoped<IParticipantRepo, ParticipantRepo>();
             services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<ICUrrentUser, CurrentUser>();
             services.AddScoped<IUserConnection, UserConnectionRepo>();
         }
     }
