@@ -90,16 +90,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowAll");
 
-// app.UseMiddleware<RateLimitingMiddleware>();
 
 
 app.UseStaticFiles();
 
 app.UseAuthentication();
-// app.UseMiddleware<JwtDebugMiddleware>(); // Removed: Middleware not found
 app.UseAuthorization();
-
-// app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.MapControllers();
 
